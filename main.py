@@ -45,30 +45,30 @@ def main():
                 bestscore = score
         print_result("SMITH-WATERMAN", bestmatch, start_time, bestscore)
 
-        ### FASTA +smith waterman ###
+        ### FASTA + SMITH-WATERMAN ###
         start_time = time.time()
         bestmatch = fasta_smith_waterman.find_best_match(P, titles)
         bestscore = smithwaterman.distance(P, bestmatch)  # Calculate score based on Smith-Waterman
         print_result(" FASTA + SMITH-WATERMAN", bestmatch, start_time, bestscore)
 
-        ### JACCARD + smith waterman ###
+        ### JACCARD + SMITH-WATERMAN ###
         start_time = time.time()
         bestmatch = jaccard_smith_waterman.find_best_match(P, titles)
         bestscore = smithwaterman.distance(P, bestmatch)  # Calculate score based on Smith-Waterman
         print_result("JACCARD + SMITH-WATERMAN", bestmatch, start_time, bestscore)
         
 
-        ### FASTA SEUL ###
+        ### FASTA  ###
         start_time = time.time()
         bestmatch, bestscore = fasta.find_best_match(P, titles)
         print_result("FASTA SEUL", bestmatch, start_time, bestscore)
 
-        ### JACCARD SEUL ###
+        ### JACCARD  ###
         start_time = time.time()
         bestmatch, bestscore = jaccard.find_best_match(P, titles)
         print_result("JACCARD SEUL", bestmatch, start_time, bestscore)
 
-        ### BLAST SEUL ###
+        ### BLAST  ###
         start_time = time.time()
         bestmatch, bestscore = blast.find_best_match(P, titles)
         print_result("BLAST SEUL", bestmatch, start_time, bestscore)
