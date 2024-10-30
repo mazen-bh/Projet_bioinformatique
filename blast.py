@@ -1,5 +1,4 @@
 import numpy as np
-import smithwaterman
 
 def create_kmers(P, k):
     """Create k-mers from the query sequence P."""
@@ -18,31 +17,34 @@ def find_matches(kmersP, T, k):
     return matches
 
 def score_matches(P, T, matches):
-    """Score the matches found using Smith-Waterman."""
+    """Score the matches found using exact matching for k-mers."""
     best_score = -float('inf')
     best_match = ""
     
     for start in matches:
-        # Align using Smith-Waterman
-        score = smithwaterman.distance(P, T[start:start + len(P)])
+        match_segment = T[start:start + len(P)]
+        # Simple score based on character matching
+        score = sum(1 for a, b in zip(P, match_segment) if a == b)
+        
         if score > best_score:
             best_score = score
-            best_match = T[start:start + len(P)]
+            best_match = match_segment
     
-    return best_match
+    return best_match, best_score
 
 def find_best_match(P, titles, k=3):
-    """Find the best match for query P in the list of titles using BLAST."""
+    """Find the best match for query P in the list of titles using BLAST without Smith-Waterman."""
     kmersP = create_kmers(P, k)
     best_match = ""
     best_score = -float('inf')
     
     for title in titles:
-        matches = find_matches(kmersP, title.lower(), k)
+        title = title.lower().strip()
+        matches = find_matches(kmersP, title, k)
         if matches:
-            match = score_matches(P, title.lower(), matches)
-            if match and smithwaterman.distance(P, match) > best_score:
+            match, score = score_matches(P, title, matches)
+            if score > best_score:
                 best_match = match
-                best_score = smithwaterman.distance(P, match)
+                best_score = score
 
-    return best_match
+    return best_match, best_score

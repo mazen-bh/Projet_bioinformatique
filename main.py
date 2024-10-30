@@ -4,8 +4,11 @@ import math
 import time
 import levenshtein
 import smithwaterman
-import fasta
+import fasta_smith_waterman
+import jaccard_smith_waterman
 import jaccard
+import fasta
+import blast
 from functions import read_titles, print_result,extract_movie_names # Import functions 
 
 def main():
@@ -42,17 +45,33 @@ def main():
                 bestscore = score
         print_result("SMITH-WATERMAN", bestmatch, start_time, bestscore)
 
-        ### HOME MADE FASTA ###
+        ### FASTA +smith waterman ###
         start_time = time.time()
-        bestmatch = fasta.find_best_match(P, titles)
+        bestmatch = fasta_smith_waterman.find_best_match(P, titles)
         bestscore = smithwaterman.distance(P, bestmatch)  # Calculate score based on Smith-Waterman
-        print_result("HOME MADE FASTA + SMITH-WATERMAN", bestmatch, start_time, bestscore)
+        print_result(" FASTA + SMITH-WATERMAN", bestmatch, start_time, bestscore)
 
-        ### JACCARD ###
+        ### JACCARD + smith waterman ###
         start_time = time.time()
-        bestmatch = jaccard.find_best_match(P, titles)
+        bestmatch = jaccard_smith_waterman.find_best_match(P, titles)
         bestscore = smithwaterman.distance(P, bestmatch)  # Calculate score based on Smith-Waterman
         print_result("JACCARD + SMITH-WATERMAN", bestmatch, start_time, bestscore)
+        
+
+        ### FASTA SEUL ###
+        start_time = time.time()
+        bestmatch, bestscore = fasta.find_best_match(P, titles)
+        print_result("FASTA SEUL", bestmatch, start_time, bestscore)
+
+        ### JACCARD SEUL ###
+        start_time = time.time()
+        bestmatch, bestscore = jaccard.find_best_match(P, titles)
+        print_result("JACCARD SEUL", bestmatch, start_time, bestscore)
+
+        ### BLAST SEUL ###
+        start_time = time.time()
+        bestmatch, bestscore = blast.find_best_match(P, titles)
+        print_result("BLAST SEUL", bestmatch, start_time, bestscore)
 
         print("")
 
