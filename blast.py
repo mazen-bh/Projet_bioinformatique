@@ -1,14 +1,12 @@
 import numpy as np
 
 def create_kmers(P, k):
-    """Create k-mers from the query sequence P."""
     kmers = set()
     for i in range(len(P) - k + 1):
         kmers.add(P[i:i + k])
     return kmers
 
 def find_matches(kmersP, T, k):
-    """Find all matches of k-mers in the target sequence T."""
     matches = []
     for i in range(len(T) - k + 1):
         kmer = T[i:i + k]
@@ -17,7 +15,6 @@ def find_matches(kmersP, T, k):
     return matches
 
 def score_matches(P, T, matches):
-    """Score the matches found using exact matching for k-mers."""
     best_score = -float('inf')
     best_match = ""
     
@@ -33,7 +30,6 @@ def score_matches(P, T, matches):
     return best_match, best_score
 
 def find_best_match(P, titles, k=3):
-    """Find the best match for query P in the list of titles using BLAST without Smith-Waterman."""
     kmersP = create_kmers(P, k)
     best_match = ""
     best_score = -float('inf')

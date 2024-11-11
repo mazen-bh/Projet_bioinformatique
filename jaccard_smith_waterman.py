@@ -12,7 +12,7 @@ def create_kmers(P):
 def distance(kmersP, kmersT):
     intersectionCount = len(kmersP.intersection(kmersT))
     unionCount = len(kmersP) + len(kmersT) - intersectionCount
-    return (intersectionCount / unionCount) * 1.0  # mult par 1.0 pour s'assurer qu'il retourne un float plutot qu'un int
+    return (intersectionCount / unionCount) * 1.0  
 
 def find_best_match(P, titles):
     distances = {}
@@ -33,6 +33,6 @@ def find_best_match(P, titles):
     
     return bestmatch
 
-##### CONFIG
+
 candidatesToKeep = 20
 k = 3

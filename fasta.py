@@ -2,14 +2,12 @@ import numpy as np
 import math
 
 def create_kmers(P, k):
-    """Crée un ensemble de k-mers à partir de la séquence de requête P."""
     kmers = set()
     for i in range(len(P) - k + 1):
         kmers.add(P[i:i + k])
     return kmers
 
 def find_hotspots(kmers, T):
-    """Trouve les hotspots dans la séquence cible T en fonction des k-mers de P."""
     hotspots = {}
     for i in range(len(T) - len(next(iter(kmers))) + 1):
         kmer = T[i:i + len(next(iter(kmers)))]
@@ -25,7 +23,7 @@ def score_diago(start, end, P, T):
     len_P = len(P)
     len_T = len(T)
     
-    # S'assurer que nous ne dépassons pas les limites de P et T
+
     while i < len_P and j < len_T and (i, j) != (end[0] + 1, end[1] + 1):
         score += 1 if P[i] == T[j] else 0
         i += 1
@@ -41,13 +39,13 @@ def find_best_match(P, titles):
     for title in titles:
         title = title.strip().lower()
         
-        # Création des kmers
+        
         kmers = create_kmers(P, k)
         
-        # Identification des hotspots
+       
         hotspots = find_hotspots(kmers, title)
 
-        # Calcul du score en diagonale
+        
         scores = []
         for kmer, positions in hotspots.items():
             for start_pos in positions:
@@ -57,7 +55,7 @@ def find_best_match(P, titles):
 
         current_score = max(scores, default=0)
         
-        # Mise à jour du meilleur score
+
         if current_score > best_score:
             best_score = current_score
             best_match = title

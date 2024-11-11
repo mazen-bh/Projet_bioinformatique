@@ -51,7 +51,7 @@ def create_diagos(P, T, dotmatrix):
     len_P = len(P)
     diago_coords = {}
     
-    #lire la première moitié de la matrice en diagonale
+    
     i = len_P
     while i >= 0:
         start = None
@@ -73,7 +73,7 @@ def create_diagos(P, T, dotmatrix):
             diago_coords[(start,end)] = score_diago(start, end, P, T)
         i -=1
 
-    #lire la 2eme moitié de la matrice en diagonale
+    
     j = 0
     while j < len_T:
         start = None
@@ -97,7 +97,7 @@ def create_diagos(P, T, dotmatrix):
     return diago_coords
 
 def create_super_diagos(diagos, P, T):
-    #identifier les voisin à distance raisonable de chq séquence
+    
     superdiagos = {}
     for d in diagos.keys():
         for other in diagos.keys():
@@ -120,7 +120,7 @@ def create_super_diagos(diagos, P, T):
                     if(dist <= maxdistance):
                         superdiagos[d] = other
 
-    #À l'aide des voisins de chacun, reconstruire les super-diagos
+
     result = {}
     for key in superdiagos:
         voisin = superdiagos[key]
@@ -169,8 +169,8 @@ def find_best_match(P, words):
     
     return bestmatch
 
-##### CONFIG #####
-k = 3           # Kmer size
+
+k = 3           
 diagosToKeep = 1000
 superDiagosToKeep = 10
-maxdistance = 5 # distance euclidienne maximale pour lier 2 diagos
+maxdistance = 5 

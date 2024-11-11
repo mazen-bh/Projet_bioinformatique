@@ -12,11 +12,11 @@ import blast
 from functions import read_titles, print_result,extract_movie_names # Import functions 
 
 def main():
-    input_file = 'db.txt'  # Input file containing the movie database
-    output_file = 'movies.txt'  # Output file where movie names will be stored
+    input_file = 'db.txt'  
+    output_file = 'movies.txt'  
     extract_movie_names(input_file, output_file)
 
-    titles = read_titles(output_file)  # Use the output file to read titles
+    titles = read_titles(output_file)  
     for P in ["Toy Story" ,"The Story", "Toy Stori", "Toy Store", "Story", "Toy Storry"]:
         print(P)
         P = P.lower()
