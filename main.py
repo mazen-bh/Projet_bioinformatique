@@ -20,7 +20,7 @@ def main():
 
     # List to store results for comparison
 
-    for P in ["Toy Story","toy stori"]:  # You can add more test cases here
+    for P in ["Toy Story","toy stori","toe storry"]:  # You can add more test cases here
         results = []
         print(P)
         P = P.lower()
