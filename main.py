@@ -19,9 +19,9 @@ def main():
     titles = read_titles(output_file)
 
     # List to store results for comparison
-    results = []
 
-    for P in ["Toy Story"]:  # You can add more test cases here
+    for P in ["Toy Story","toy stori"]:  # You can add more test cases here
+        results = []
         print(P)
         P = P.lower()
 
@@ -147,9 +147,9 @@ def main():
         print("MEMORY USED: ", memory_used)
 
     # After collecting all results, compare and rank algorithms
-    print("\nComparing Algorithms:")
-    compare_algorithms(results)
-    plot_algorithm_performance(results)
+        print("\nComparing Algorithms:")
+        compare_algorithms(results)
+        plot_algorithm_performance(results)
 
 
 

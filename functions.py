@@ -89,9 +89,6 @@ def compare_algorithms(results):
     for i, res in enumerate(sorted_by_memory):
         print(f"{i+1}. {res['algorithm']}: {res['memory_used']} MB")
 
-    print("\nRanking by Score:")
-    for i, res in enumerate(sorted_by_score):
-        print(f"{i+1}. {res['algorithm']}: {res['score']}")
 
     return {
         'time': sorted_by_time,
