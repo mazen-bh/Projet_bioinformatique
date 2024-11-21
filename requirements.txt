@@ -1,0 +1,11 @@
+numpy
+smithwaterman
+levenshtein
+fasta_smith_waterman
+jaccard_smith_waterman
+jaccard
+fasta
+blast
+psutil
+threading
+matplotlib

@@ -9,6 +9,13 @@ import jaccard_smith_waterman
 import jaccard
 import fasta
 import blast
+import levenshtein
+import smithwaterman
+import fasta_smith_waterman
+import jaccard_smith_waterman
+import jaccard
+import fasta
+import blast
 from functions import read_titles, print_result, extract_movie_names, calculate_resources, compare_algorithms,plot_algorithm_performance  # Import functions
 
 def main():
