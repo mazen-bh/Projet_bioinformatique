@@ -1,11 +1,4 @@
 numpy
-smithwaterman
-levenshtein
-fasta_smith_waterman
-jaccard_smith_waterman
-jaccard
-fasta
-blast
+pandas
 psutil
-threading
 matplotlib

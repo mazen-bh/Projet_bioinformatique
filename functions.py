@@ -6,19 +6,19 @@ import matplotlib.pyplot as plt
 
 
 def extract_movie_names(input_file, output_file):
-    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
-      
+    with open(input_file, 'r',encoding='utf-8') as infile, open(output_file, 'w',encoding='utf-8') as outfile:
+     
         for line in infile:
-            
+           
             parts = line.split(',')
             if len(parts) > 1:
                 movie_name_with_year = parts[1].strip()  
                 movie_name = movie_name_with_year.split(' (')[0]  
                 outfile.write(movie_name + '\n')  
-
+ 
 def read_titles(file_path):
     titles = []
-    with open(file_path, 'r') as file:
+    with open(file_path, 'r',encoding='utf-8') as file:
         titles = file.readlines()
     return titles
 
