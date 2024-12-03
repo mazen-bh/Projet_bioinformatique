@@ -36,10 +36,10 @@ def print_result(algo_name, best_match, start_time, score=None):
 def monitor_resources(process, stop_event, cpu_samples, memory_samples):
     """Continuously monitor and collect CPU and memory usage while the stop_event is not set."""
     while not stop_event.is_set():
-        # Capture current CPU and memory usage
+        
         cpu_samples.append(process.cpu_percent(interval=0.1))
         memory_samples.append(process.memory_info().rss)
-        time.sleep(0.05)  # Short sleep to prevent excessive CPU monitoring load
+        time.sleep(0.05)  
 
 def calculate_resources(func, *args):
     process = psutil.Process()
@@ -47,20 +47,16 @@ def calculate_resources(func, *args):
     memory_samples = []
     stop_event = threading.Event()
 
-    # Start monitoring in a separate thread
     monitor_thread = threading.Thread(target=monitor_resources, args=(process, stop_event, cpu_samples, memory_samples))
     monitor_thread.start()
 
-    # Execute the target function and time its execution
     start_time = time.time()
     result = func(*args)
     end_time = time.time()
 
-    # Stop monitoring
     stop_event.set()
     monitor_thread.join()
 
-    # Calculate execution metrics
     execution_time = end_time - start_time
     avg_cpu_used = sum(cpu_samples) / len(cpu_samples) if cpu_samples else 0.0
     peak_memory_used = max(memory_samples) if memory_samples else 0
@@ -108,7 +104,6 @@ def plot_algorithm_performance(results):
     cpu_usages = [res['cpu_used'] for res in results]
     memory_usages = [res['memory_used'] for res in results]
 
-    # Plot Execution Time in a separate panel
     plt.figure(figsize=(10, 6))
     plt.barh(algorithms, execution_times, color='skyblue')
     plt.title("Execution Time (s)")
@@ -116,7 +111,6 @@ def plot_algorithm_performance(results):
     plt.tight_layout()
     plt.show()
 
-    # Plot CPU Usage in a separate panel
     plt.figure(figsize=(10, 6))
     plt.barh(algorithms, cpu_usages, color='salmon')
     plt.title("CPU Usage (%)")
@@ -124,7 +118,6 @@ def plot_algorithm_performance(results):
     plt.tight_layout()
     plt.show()
 
-    # Plot Memory Usage in a separate panel
     plt.figure(figsize=(10, 6))
     plt.barh(algorithms, memory_usages, color='lightgreen')
     plt.title("Memory Usage (MB)")

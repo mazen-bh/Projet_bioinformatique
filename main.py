@@ -25,7 +25,6 @@ def main():
 
     titles = read_titles(output_file)
 
-    # List to store results for comparison
 
     for P in ["Toy Story","toy stori","toe storry"]:  # You can add more test cases here
         results = []
